@@ -74,6 +74,15 @@ const list = () => {
       [fieldName]: value,
     }));
 
+    if (!value) {
+      return setError({
+        id: false,
+        pw: false,
+        pwpw: false,
+        pwpwMatch: false,
+      });
+    }
+
     setError((prevError) => ({
       ...prevError,
       [fieldName]: !isInputValid(fieldName, value),
