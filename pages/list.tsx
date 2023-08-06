@@ -74,19 +74,17 @@ const list = () => {
       [fieldName]: value,
     }));
 
-    if (!value) {
-      return setError({
-        id: false,
-        pw: false,
-        pwpw: false,
-        pwpwMatch: false,
-      });
+    if (value) {
+      setError((prevError) => ({
+        ...prevError,
+        [fieldName]: !isInputValid(fieldName, value),
+      }));
+    } else {
+      setError((prevError) => ({
+        ...prevError,
+        [fieldName]: false,
+      }));
     }
-
-    setError((prevError) => ({
-      ...prevError,
-      [fieldName]: !isInputValid(fieldName, value),
-    }));
   };
 
   // 비밀번호 비교 검사
