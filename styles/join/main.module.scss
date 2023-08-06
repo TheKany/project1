@@ -1,0 +1,83 @@
+.index-container {
+  .container {
+    background-color: indianred;
+    .mainContainer {
+      .inputContainer {
+      }
+
+      .authContainer {
+      }
+
+      .agreeContainer {
+        display: flex;
+
+        .약관 {
+          .checkbox {
+            display: none;
+          }
+
+          .checkbox-label {
+            position: relative;
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+          }
+
+          .checkbox-label:after,
+          .checkbox-label:before {
+            content: "";
+            position: absolute;
+            background: #fff;
+          }
+
+          .checkbox-label:after {
+            content: "";
+            position: absolute;
+          }
+
+          .checkbox-label:before {
+            width: 9px;
+            height: 5px;
+            border-left: 2px solid indianred;
+            border-bottom: 2px solid indianred;
+            transform: rotate(-45deg);
+            top: 50%;
+            left: 50%;
+            opacity: 0.2;
+            transition: opacity 0.2s;
+          }
+
+          .checkbox:checked + .checkbox-label:before {
+            opacity: 1;
+          }
+
+          .checkbox-description {
+            margin-left: 10px;
+            cursor: pointer;
+          }
+        }
+
+        .전체약관동의 {
+          display: flex;
+        }
+
+        .이용약관 {
+          display: flex;
+        }
+
+        .개인정보 {
+          display: flex;
+        }
+
+        .뉴스레터 {
+          display: flex;
+        }
+
+        .광고알림 {
+          display: flex;
+        }
+      }
+    }
+  }
+}

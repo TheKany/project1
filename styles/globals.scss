@@ -1,0 +1,175 @@
+body {
+  background-color: #4d4c4c;
+}
+
+h1,
+p {
+  color: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+/* ------------------------------------- */
+
+.nav-bar {
+  width: 100%;
+  margin-left: 100px;
+}
+
+.nav-bar a {
+  text-decoration: none;
+  margin-left: 50px;
+  margin-top: 100px;
+  color: #fff;
+  font-size: 40px;
+}
+
+/* ------------------------------------- */
+
+.index-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 300px;
+}
+
+.index-container .title {
+  font-size: 100px;
+}
+
+.index-container .text {
+  margin-top: 50px;
+  font-size: 30px;
+  font-weight: 400;
+}
+
+// ------------------------------------
+.index-container {
+  position: absolute;
+  top: -200px;
+
+  .container {
+    .mainContainer {
+      .inputContainer {
+        display: flex;
+        flex-direction: column;
+
+        input {
+          margin: 10px 0;
+          padding: 15px 0;
+          padding-left: 20px;
+          border-radius: 20px;
+        }
+
+        .error {
+          position: absolute;
+          font-size: 12px;
+          color: red;
+          bottom: -8px;
+          left: 10px;
+        }
+
+        .idBox {
+          display: flex;
+          flex-direction: column;
+          position: relative;
+
+          .input-id {
+          }
+        }
+
+        .pwBox {
+          display: flex;
+          flex-direction: column;
+          position: relative;
+
+          .input-pw {
+          }
+
+          .pwButton {
+            position: absolute;
+            bottom: 23px;
+            right: 14px;
+          }
+        }
+
+        .pwpwBox {
+          display: flex;
+          flex-direction: column;
+          position: relative;
+
+          .input-pwpw {
+          }
+
+          .pwpwButton {
+            position: absolute;
+            bottom: 23px;
+            right: 14px;
+          }
+        }
+      }
+
+      .authContainer {
+        display: flex;
+        margin: 30px 0;
+      }
+
+      .agreeContainer {
+        display: flex;
+        flex-direction: column;
+
+        .agreeBox {
+          display: flex;
+
+          // 체크박스 --------
+          .agreeCheck {
+            display: none;
+            background-color: blue;
+          }
+
+          .agreeCheck-label {
+            position: relative;
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+
+            &:after,
+            &:before {
+              content: '';
+              position: absolute;
+              background: #4d4c4c;
+            }
+
+            &:before {
+              width: 9px;
+              height: 5px;
+              border-left: 2px solid indianred;
+              border-bottom: 2px solid indianred;
+              transform: rotate(-45deg);
+              top: 50%;
+              left: 50%;
+              opacity: 0.3;
+              transition: opacity 0.2s;
+            }
+          }
+
+          .agreeCheck:checked + .agreeCheck-label:before {
+            opacity: 1;
+            border-left: 2px solid aquamarine;
+            border-bottom: 2px solid aquamarine;
+          }
+
+          .agreeCheck-description {
+            margin-left: 10px;
+            color: #fff;
+            margin: 5px 10px;
+            cursor: pointer;
+          }
+          // --------------
+        }
+      }
+    }
+  }
+}

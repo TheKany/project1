@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 서버로부터 받은 값
+      const objArr = [
+        { id: "1", name: "qwe", price: "1000", state: "1" },
+        { id: "2", name: "asd", price: "2000", state: "1" },
+        { id: "3", name: "zxc", price: "3000", state: "1" },
+        { id: "4", name: "ryt", price: "4000", state: "1" },
+        { id: "5", name: "fgh", price: "5000", state: "1" },
+        { id: "6", name: "vvb", price: "6000", state: "1" },
+        { id: "7", name: "jgf", price: "7000", state: "1" },
+      ];
+
+      const makeInput = (arr) => {
+        const container = document.querySelector(".container");
+        for (let i = 0; i < 5; i++) {
+          const obj = arr[i];
+          const checkbox = document.createElement("input");
+          checkbox.type = "checkbox";
+          checkbox.addEventListener("change", updateTotalPrice);
+          container.appendChild(checkbox);
+
+          const label = document.createElement("label");
+          label.textContent = `${obj.name} - ${obj.price}`;
+          container.appendChild(label);
+          container.appendChild(document.createElement("br"));
+        }
+
+        const totalPriceContainer = document.createElement("span");
+        totalPriceContainer.id = "totalPrice";
+        container.appendChild(totalPriceContainer);
+      };
+
+      const makeNewObj = () => {
+        const checkboxes = document.querySelectorAll(
+          ".container input[type='checkbox']"
+        );
+        const newObjArr = [];
+        checkboxes.forEach((checkbox) => {
+          const checked = checkbox.checked;
+          const [name, price] = checkbox.value.split(" - ");
+          newObjArr.push({ name, price, checked });
+        });
+        return newObjArr;
+      };
+
+      const updateTotalPrice = () => {
+        const selectedObjs = makeNewObj().filter((obj) => obj.checked === true);
+        const totalPrice = selectedObjs.reduce(
+          (total, obj) => total + parseInt(obj.price),
+          0
+        );
+        const totalPriceContainer = document.getElementById("totalPrice");
+        totalPriceContainer.textContent = `Total Price: ${totalPrice}`;
+      };
+
+      const onClickCol = () => {
+        const selectedObjs = makeNewObj().filter((obj) => obj.checked === true);
+        const totalPrice = selectedObjs.reduce(
+          (total, obj) => total + parseInt(obj.price),
+          0
+        );
+        console.log(totalPrice);
+      };
+
+      window.addEventListener("load", () => {
+        makeInput(objArr);
+      });
+    </script>
+
+    <h1>체크 테스트 페이지</h1>
+    <div class="container"></div>
+    <button type="button" onclick="onClickCol()">사용하기</button>
+  </body>
+</html>
+
+<!-- NaN이 뜬다 그려지는 거에 수정해야함 -->
