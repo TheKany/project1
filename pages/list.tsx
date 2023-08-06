@@ -39,6 +39,7 @@ const list = () => {
     pw: '',
     pwpw: '',
   });
+
   // 유효성검사 에러표시
   const [error, setError] = useState({
     id: false,
@@ -48,49 +49,34 @@ const list = () => {
   });
 
   // input 유효성 검사 및 업데이트
+  const isInputValid = (fieldName: string, value: string): boolean => {
+    switch (fieldName) {
+      case 'id':
+        return utils.regEx.email(value);
+      case 'pw':
+      case 'pwpw':
+        return utils.regEx.password(value);
+      default:
+        return true;
+    }
+  };
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>, fieldName: string) => {
     const value = e.target.value;
 
-    let validationFunc: (arg0: string) => boolean;
-    switch (fieldName) {
-      case 'id':
-        validationFunc = utils.regEx.email;
-        break;
-      case 'pw':
-      case 'pwpw':
-        validationFunc = utils.regEx.password;
-        break;
-      default:
-        validationFunc = () => true;
-        break;
-    }
-
-    // 인풋 정보 업데이트
     setInputs((prevInputs) => ({
       ...prevInputs,
       [fieldName]: value,
     }));
 
-    // 회원가입 완료를 위한 업데이트
     setUserInfo((prev) => ({
       ...prev,
       [fieldName]: value,
     }));
 
-    // 유효성 검사 결과에 따라 에러 상태 업데이트
-    // 빈 값이면 에러메세지 사라짐
-    if (!value) {
-      return setError({
-        id: false,
-        pw: false,
-        pwpw: false,
-        pwpwMatch: false,
-      });
-    }
-
     setError((prevError) => ({
       ...prevError,
-      [fieldName]: !validationFunc(value),
+      [fieldName]: !isInputValid(fieldName, value),
     }));
   };
 
